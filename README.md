@@ -31,6 +31,26 @@
 14. [开发、生产环境的拆分代码][14] 
 15. [模版解析配置项][15] 
 
+## 命令
+
+1. 安装
+
+```
+npm install
+```
+
+2. 运行开发环境
+
+```
+npm start
+```
+
+3. 输出生产环境
+
+```
+npm run build
+```
+
 
 [1]:https://github.com/kaivin/webpack4.x/blob/master/README/01：项目准备工作.md "项目准备工作" 
 [2]:https://github.com/kaivin/webpack4.x/blob/master/README/02：配置基础的开发环境webpack.md "配置基础的开发环境webpack" 
