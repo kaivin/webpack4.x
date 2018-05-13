@@ -1,8 +1,8 @@
-import './css/reset.css';
-import './scss/public.scss';
-import './less/index.less';
+import './assets/styles/reset.css';
+import './assets/styles/public.scss';
+import './assets/styles/index.less';
 
-import image from './images/favicon.png';
+import image from './assets/images/favicon.png';
 
 if (module.hot) {
     module.hot.accept();

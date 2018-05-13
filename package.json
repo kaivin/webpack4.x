@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --config webpack.dev.config.js",
-    "start": "webpack-dev-server --config webpack.dev.config.js --color --progress",
-    "build": "webpack --config webpack.production.config.js"
+    "dev": "webpack --config config/webpack/webpack.dev.config.js",
+    "start": "webpack-dev-server --config config/webpack/webpack.dev.config.js --color --progress",
+    "build": "webpack --config config/webpack/webpack.production.config.js"
   },
   "keywords": [],
   "author": "",
