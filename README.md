@@ -32,6 +32,7 @@
 13. [生产环境代码压缩][13] 
 14. [开发、生产环境的拆分代码][14] 
 15. [模版解析配置项][15] 
+16. [优化项目框架结构][16] 
 
 ## 命令
 
@@ -69,3 +70,4 @@ npm run build
 [13]:https://github.com/kaivin/webpack4.x/blob/master/README/13：生产环境代码压缩.md "生产环境代码压缩" 
 [14]:https://github.com/kaivin/webpack4.x/blob/master/README/14：开发、生产环境的拆分代码.md "开发、生产环境的拆分代码" 
 [15]:https://github.com/kaivin/webpack4.x/blob/master/README/15：模版解析配置项.md "模版解析配置项" 
+[16]:https://github.com/kaivin/webpack4.x/blob/master/README/16：优化项目框架结构.md "优化项目框架结构" 
