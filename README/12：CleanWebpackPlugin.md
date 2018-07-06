@@ -211,6 +211,7 @@ module.exports = {
   "license": "ISC",
   "dependencies": {},
   "devDependencies": { 
+    "autoprefixer": "^8.6.4",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
@@ -228,7 +229,6 @@ module.exports = {
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.8.3",
     "opn": "^5.3.0",
-    "postcss-cssnext": "^3.1.0",
     "postcss-loader": "^2.1.4",
     "postcss-scss": "^1.0.5",
     "precss": "^3.1.2",

@@ -11,7 +11,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1"
+  },
   "devDependencies": {
     "autoprefixer": "^8.6.4",
     "babel-cli": "^6.26.0",

@@ -128,8 +128,6 @@ module.exports = function (env) {
         modules: [path.resolve(__dirname, "../../src"), path.resolve(__dirname, "../../node_modules")], // 绝对路径;
         // 别名，可以直接使用别名来代表设定的路径以及其他
         alias: {
-            'react': 'react/umd/react.production.min.js',
-            'react-dom': 'react-dom/umd/react-dom.production.min.js',
             '@config': resolve('../config'),
             'views': path.resolve(__dirname, '../../src/views'),
             'components': path.resolve(__dirname, '../../src/components')
