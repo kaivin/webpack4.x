@@ -56,7 +56,7 @@ import './css/reset.css';
 安装相关插件
 
 ```
-npm install precss postcss-cssnext postcss-loader -D
+npm install precss postcss-loader autoprefixer -D
 ```
 
 首先需要在根目录创建 `postcss.config.js` 文件，添加如下内容
@@ -65,7 +65,7 @@ npm install precss postcss-cssnext postcss-loader -D
 module.exports = {
     plugins: [
       require('precss'),
-      require('postcss-cssnext')
+      require('autoprefixer')({ browsers: '> 0.1%', })
     ]
 }
 ```
@@ -97,7 +97,7 @@ module:{
 },
 ```
 
-我们这里只用 `postcss` 的给代码添加浏览器前缀功能， 而 `postcss-cssnext` 中，就集成了 `autoprefixer` ，测试一下效果如何
+我们这里只用 `postcss` 的给代码添加浏览器前缀功能， `autoprefixer` ，测试一下效果如何
 
 在 `src/index.html` 的 `body` 中，添加如下代码：
 
@@ -151,7 +151,7 @@ module.exports = {
     parser: 'postcss-scss',
     plugins: [
       require('precss'),
-      require('postcss-cssnext')
+      require('autoprefixer')({ browsers: '> 0.1%', })
     ]
 }
 ```
@@ -427,6 +427,7 @@ module.exports = {
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "autoprefixer": "^8.6.4",
     "chalk": "^2.4.0",
     "css-loader": "^0.28.11",
     "html-webpack-plugin": "^3.2.0",
@@ -435,7 +436,6 @@ module.exports = {
     "less-loader": "^4.1.0",
     "node-sass": "^4.8.3",
     "opn": "^5.3.0",
-    "postcss-cssnext": "^3.1.0",
     "postcss-loader": "^2.1.4",
     "postcss-scss": "^1.0.5",
     "precss": "^3.1.2",
@@ -455,7 +455,7 @@ module.exports = {
     parser: 'postcss-scss',
     plugins: [
       require('precss'),
-      require('postcss-cssnext')
+      require('autoprefixer')({ browsers: '> 0.1%', })
     ]
 }
 ```
