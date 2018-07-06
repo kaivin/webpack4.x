@@ -17,7 +17,7 @@ module.exports = {
     webpack: {
         entry: {
             app: path.resolve(__dirname, 'src/index.js'), // 入口
-            vendor: ["react",'react-dom'] // 拆分框架代码
+            vendor: ["vue",'vue-router'] // 拆分框架代码
         },
         // 自定义Alias设置
         resolveAlias: {},
