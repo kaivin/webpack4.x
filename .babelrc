@@ -1,21 +1,14 @@
 {
     "presets": [
-        ["env", {
-            "targets": { 
-                "browsers": ["last 2 versions", "safari >= 7"],
-                "node": "current"
-            },
-            "modules": false,
-            "debug": false,
-            "useBuiltIns": false
-        }]
+      ["@babel/preset-env", {
+        "modules": false,
+        "targets": {
+          "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+        },
+        "useBuiltIns": "usage"
+      }]
     ],
     "plugins": [
-        "transform-decorators-legacy",
-        ["transform-runtime", {
-            "helpers": false, 
-            "polyfill": false, 
-            "regenerator": true
-        }]
+      "@babel/plugin-transform-runtime"
     ]
-}
+  }
