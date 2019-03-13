@@ -56,7 +56,7 @@ import './css/reset.css';
 安装相关插件
 
 ```
-npm install precss postcss-loader autoprefixer -D
+npm install postcss-loader autoprefixer -D
 ```
 
 首先需要在根目录创建 `postcss.config.js` 文件，添加如下内容
@@ -64,8 +64,7 @@ npm install precss postcss-loader autoprefixer -D
 ```
 module.exports = {
     plugins: [
-      require('precss'),
-      require('autoprefixer')({ browsers: '> 0.1%', })
+      require('autoprefixer')
     ]
 }
 ```
@@ -97,7 +96,20 @@ module:{
 },
 ```
 
-我们这里只用 `postcss` 的给代码添加浏览器前缀功能， `autoprefixer` ，测试一下效果如何
+修改`package.json` 文件，添加如下代码：
+
+```
+"browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ]
+```
+
+在`package.json` 文件中添加要兼容哪些浏览器版本，我们这里只用 `postcss` 的给代码添加浏览器前缀功能， `autoprefixer` ，测试一下效果如何
 
 在 `src/index.html` 的 `body` 中，添加如下代码：
 
@@ -129,11 +141,13 @@ document.getElementById('postcss').innerHTML = "<h1>我自动添加了浏览器�
 
 #### 使用 scss 预处理 css
 
-`scss` 的好用之处，这里不做赘述，先安装插件，这里使用 `node-sass`，使用 `node-sass` 必须先全局安装 `node-gyp` 以及 `node-sass`
+`scss` 的好用之处，这里不做赘述，先安装插件，这里使用 `node-sass`，安装 `node-sass` 往往是最容易出错的，首先需要电脑安装 `python` 软件，然后必须先全局安装 `node-gyp` 然后才能全局安装 `node-sass`，而安装 `node-sass` 如果不FQ的话，只能用 `cnpm` 进行安装，全局安装完 `node-sass`，再在项目中安装一遍就可以了
 
 ```
-npm install node-gyp node-sass -g
-npm install node-sass postcss-scss sass-loader -D
+npm install node-gyp -g
+cnpm install node-sass -g
+npm install postcss-scss sass-loader -D
+cnpm install node-sass -D
 ```
 
 使用 `vscode` 编辑器，要让其支持 `scss` 语法，需要在 `文件-首选项-设置` 中添加以下代码
@@ -150,8 +164,7 @@ npm install node-sass postcss-scss sass-loader -D
 module.exports = {
     parser: 'postcss-scss',
     plugins: [
-      require('precss'),
-      require('autoprefixer')({ browsers: '> 0.1%', })
+      require('autoprefixer')
     ]
 }
 ```
@@ -444,7 +457,15 @@ module.exports = {
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15",
     "webpack-dev-server": "^3.1.3"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ]
 }
 ```
 
@@ -454,8 +475,7 @@ module.exports = {
 module.exports = {
     parser: 'postcss-scss',
     plugins: [
-      require('precss'),
-      require('autoprefixer')({ browsers: '> 0.1%', })
+      require('autoprefixer')
     ]
 }
 ```
