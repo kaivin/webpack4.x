@@ -30,7 +30,7 @@ module.exports = function (env) {
     // 输出模块配置
     output: {
       // 输出到这个目录下
-      path: env === "prod" ? path.resolve(__dirname,"../../bin") : path.resolve(__dirname,"../../dist"),
+      path: path.resolve(__dirname,"../../dist"),
       // 生成的文件名, [name] 即为entry配置中的key
       filename: env === "prod" ? 'js/[name].[chunkhash].js' : 'js/[name].[hash].js',
       // 异步模块文件名
@@ -97,14 +97,7 @@ module.exports = function (env) {
     },
     // 插件配置项
     plugins: [
-      new CleanWebpackPlugin(
-        env === "prod" ? ['bin'] : ['dist'],
-        {
-            root: path.resolve(__dirname, '../../'),  // 根目录
-            verbose: true,        　　　　　　　　　　 // 开启在控制台输出信息
-            dry: false        　　　　　　　　　　     // 启用删除文件
-        }
-      ),// 删除 dist/bin 文件夹
+      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
           filename: 'index.html',// 输出文件的名称
           template: appConfig.htmlTemplate,// 模板文件的路径
