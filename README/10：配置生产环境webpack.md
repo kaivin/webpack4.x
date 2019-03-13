@@ -7,7 +7,6 @@
 然后我们需要做以下几处修改：
 
 1. 删除 `devServer` 配置项的代码
-2. 出口配置 `path: path.join(__dirname, 'dist'),` 改为 `path: path.join(__dirname, 'bin'),`， `bin` 为生产环境的构建目录
 3. 出口配置 `filename: 'js/[name].[hash].js'` 改为 `filename: 'js/[name].[chunkhash].js'`， 开发环境设置为 `hash` 是因为这个和 `webpack-dev-server` 不兼容
 4. `devtool` 的配置改为 `cheap-module-source-map`
 5. 删除 `plugins` 配置中的 `new webpack.HotModuleReplacementPlugin(),` 生产环境已经不需要热加载，不删除会报错
@@ -29,7 +28,7 @@ module.exports = {
     },
     // 输出文件配置项
     output:{
-        path:path.resolve(__dirname,"bin"),
+        path:path.resolve(__dirname,"dist"),
         filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[name].[chunkhash].js',
         publicPath:""
@@ -184,4 +183,4 @@ module.exports = {
 "build":"webpack --config webpack.production.config.js"
 ```
 
-然后执行 `npm run build` 项目根目录中是不是已经生成 `bin` 文件夹，其内就是打包的生产环境的文件了~
+然后执行 `npm run build` 项目根目录中是不是已经生成 `dist` 文件夹，其内就是打包的生产环境的文件了~
