@@ -1,6 +1,6 @@
 ## clean-webpack-plugin
 
-在上一章我们把 `css` 单独抽离出来，但是打开 `js` 文件夹，会发现，这里有两个 `app.js` 文件，只是 `hash` 值不同而已，打开 `bin/index.html` 文件，发现其引用了其中的一个，也就是说，另一个是完全没用的，当我们修改入口文件的 `js` 代码，再次执行 `npm run build` 时，会发现 `js` 文件夹又会生成新的 `app.js` 文件，我们只需要被引用的那一个，其他的我们都需要删除它，这里需要用到 `clean-webpack-plugin`
+在上一章我们把 `css` 单独抽离出来，但是打开 `js` 文件夹，会发现，这里有两个 `app.js` 文件，只是 `hash` 值不同而已，打开 `dist/index.html` 文件，发现其引用了其中的一个，也就是说，另一个是完全没用的，当我们修改入口文件的 `js` 代码，再次执行 `npm run build` 时，会发现 `js` 文件夹又会生成新的 `app.js` 文件，我们只需要被引用的那一个，其他的我们都需要删除它，这里需要用到 `clean-webpack-plugin`
 
 ```
 npm i clean-webpack-plugin -D
@@ -15,10 +15,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 然后在 `plugins` 中使用该插件
 
 ```
-new CleanWebpackPlugin(['./bin']),// 删除 bin 文件夹
+new CleanWebpackPlugin(),
 ```
 
-再次执行 `npm run build` 查看 `bin/js` 文件夹内的文件，已经只存在一个被 `bin/index.html` 引用的 `app.js` 文件了~
+再次执行 `npm run build` 查看 `dist/js` 文件夹内的文件，已经只存在一个被 `dist/index.html` 引用的 `app.js` 文件了~
 
 
 ## 相关文件配置信息更新情况
@@ -42,7 +42,7 @@ module.exports = {
     },
     // 输出文件配置项
     output:{
-        path:path.resolve(__dirname,"bin"),
+        path:path.resolve(__dirname,"dist"),
         filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[name].[chunkhash].js',
         publicPath:""
@@ -177,7 +177,7 @@ module.exports = {
     },
     // 插件配置项
     plugins: [
-        new CleanWebpackPlugin(['./bin']),// 删除 bin 文件夹
+        new CleanWebpackPlugin(),
         new webpack.HashedModuleIdsPlugin(),// 实现持久化缓存
         new HtmlWebpackPlugin({
             filename: 'index.html',// 输出文件的名称
@@ -211,13 +211,12 @@ module.exports = {
   "license": "ISC",
   "dependencies": {},
   "devDependencies": { 
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
     "autoprefixer": "^8.6.4",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-loader": "^8.0.5",
     "chalk": "^2.4.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
@@ -231,13 +230,20 @@ module.exports = {
     "opn": "^5.3.0",
     "postcss-loader": "^2.1.4",
     "postcss-scss": "^1.0.5",
-    "precss": "^3.1.2",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15",
     "webpack-dev-server": "^3.1.3"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ]
 }
 ```
