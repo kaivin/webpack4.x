@@ -1,6 +1,8 @@
+# dev
 .DS_Store
 node_modules/
-bin/
 dist/
 
-.git
+
+# config
+package-lock.json
