@@ -128,7 +128,7 @@ module.exports = {
     },
     // 输出文件配置项
     output:{
-        path:path.resolve(__dirname,"bin"),
+        path:path.resolve(__dirname,"dist"),
         filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[name].[chunkhash].js',
         publicPath:""
@@ -289,20 +289,20 @@ module.exports = {
   "main": "index.js",
   "scripts": {
     "dev": "webpack --config webpack.dev.config.js",
-    "start": "webpack-dev-server --config webpack.dev.config.js --color --progress"
+    "start": "webpack-dev-server --config webpack.dev.config.js --color --progress",
+    "build": "webpack --config webpack.prod.conf.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": { 
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
     "autoprefixer": "^8.6.4",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-loader": "^8.0.5",
     "chalk": "^2.4.0",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
@@ -315,13 +315,20 @@ module.exports = {
     "opn": "^5.3.0",
     "postcss-loader": "^2.1.4",
     "postcss-scss": "^1.0.5",
-    "precss": "^3.1.2",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15",
     "webpack-dev-server": "^3.1.3"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ]
 }
 ```
