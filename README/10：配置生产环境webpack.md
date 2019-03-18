@@ -1,8 +1,8 @@
 ## 配置生产环境
 
-根目录下新建一个 `webpack.production.config.js` 文件
+根目录下新建一个 `webpack.prod.conf.js` 文件
 
-先将 `webpack.dev.config.js` 文件的内容，全部复制到该文件中
+先将 `webpack.dev.conf.js` 文件的内容，全部复制到该文件中
 
 然后我们需要做以下几处修改：
 
@@ -162,7 +162,17 @@ module.exports = {
                         publicPath:''
                     },
                 }],
-            }, 
+            }, {
+                test:/\.html$/,
+                use:[
+                    {
+                        loader:"html-loader",
+                        options:{
+                            attrs:["img:src","img:data-src"] 
+                        }
+                    }
+                ]
+            }
         ]
     },
     // 插件配置项
@@ -180,7 +190,7 @@ module.exports = {
 然后在 `package.json` 文件中增加打包脚本
 
 ```
-"build":"webpack --config webpack.production.config.js"
+"build":"webpack --config webpack.prod.conf.js"
 ```
 
 然后执行 `npm run build` 项目根目录中是不是已经生成 `dist` 文件夹，其内就是打包的生产环境的文件了~

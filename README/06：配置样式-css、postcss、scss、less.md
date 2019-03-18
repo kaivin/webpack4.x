@@ -16,7 +16,7 @@
 npm install css-loader style-loader -D
 ```
 
-修改在 `webpack.dev.config.js` 文件，新增 `module` 配置，添加如下代码：
+修改在 `webpack.dev.conf.js` 文件，新增 `module` 配置，添加如下代码：
 
 ```
 // 加载器 loader 配置项
@@ -69,7 +69,7 @@ module.exports = {
 }
 ```
 
-修改 `webpack.dev.config.js` 文件的 `module` 配置如下：
+修改 `webpack.dev.conf.js` 文件的 `module` 配置如下：
 
 ```
 // 加载器 loader 配置项
@@ -141,13 +141,19 @@ document.getElementById('postcss').innerHTML = "<h1>我自动添加了浏览器�
 
 #### 使用 scss 预处理 css
 
-`scss` 的好用之处，这里不做赘述，先安装插件，这里使用 `node-sass`，安装 `node-sass` 往往是最容易出错的，首先需要电脑安装 `python` 软件，然后必须先全局安装 `node-gyp` 然后才能全局安装 `node-sass`，而安装 `node-sass` 如果不FQ的话，只能用 `cnpm` 进行安装，全局安装完 `node-sass`，再在项目中安装一遍就可以了
+`scss` 的好用之处，这里不做赘述，先安装插件，这里使用 `node-sass`，安装 `node-sass` 往往是最容易出错的，首先需要电脑安装 `python` 软件，然后必须先全局安装 `node-gyp` 然后才能全局安装 `node-sass`，而安装 `node-sass` 如果不FQ的话，只能用 `cnpm` 进行安装，全局安装完 `node-sass`，再在项目中安装一遍就可以了。
+
+***`node-sass`让人头痛的问题终于找到了一个比较好的解决办法，那就是为`node-sass`单独设置一下镜像源，可以在命令行中输入以下命令：***
 
 ```
-npm install node-gyp -g
-cnpm install node-sass -g
-npm install postcss-scss sass-loader -D
-cnpm install node-sass -D
+npm config set sass-binary-site http://npm.taobao.org/mirrors/node-sass -g
+```
+
+然后再安装相关插件：
+
+```
+npm install node-gyp node-sass -g
+npm install postcss-scss sass-loader node-sass -D
 ```
 
 使用 `vscode` 编辑器，要让其支持 `scss` 语法，需要在 `文件-首选项-设置` 中添加以下代码
@@ -169,7 +175,7 @@ module.exports = {
 }
 ```
 
-然后修改 `webpack.dev.config.js` 文件，添加 `sass-loader`
+然后修改 `webpack.dev.conf.js` 文件，添加 `sass-loader`
 
 ```
 {
@@ -234,7 +240,7 @@ import './scss/public.scss';
 npm install less less-loader -D
 ```
 
-修改 `webpack.dev.config.js` 文件，添加 `less-loader`
+修改 `webpack.dev.conf.js` 文件，添加 `less-loader`
 
 ```
 {
@@ -299,7 +305,7 @@ import './less/index.less';
 
 #### 以下为本文已涉及到的配置文件的当前详细信息
 
-1. `webpack.dev.config.js` 文件现在的配置信息情况：
+1. `webpack.dev.conf.js` 文件现在的配置信息情况：
 
 ```
 const path = require("path");
@@ -423,53 +429,7 @@ module.exports = {
 }
 ```
 
-2. `package.json` 文件现在的配置信息情况：
-
-```
-{
-  "name": "webpack-demo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "webpack --config webpack.dev.config.js",
-    "start": "webpack-dev-server --config webpack.dev.config.js --color --progress"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
-    "autoprefixer": "^8.6.4",
-    "chalk": "^2.4.0",
-    "css-loader": "^0.28.11",
-    "html-webpack-plugin": "^3.2.0",
-    "ip": "^1.1.5",
-    "less": "^3.0.2",
-    "less-loader": "^4.1.0",
-    "node-sass": "^4.8.3",
-    "opn": "^5.3.0",
-    "postcss-loader": "^2.1.4",
-    "postcss-scss": "^1.0.5",
-    "precss": "^3.1.2",
-    "sass-loader": "^7.0.1",
-    "style-loader": "^0.21.0",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.15",
-    "webpack-dev-server": "^3.1.3"
-  },
-  "browserslist": [
-    "defaults",
-    "not ie < 11",
-    "last 2 versions",
-    "> 1%",
-    "iOS 7",
-    "last 3 iOS versions"
-  ]
-}
-```
-
-3. `postcss.config.js` 文件现在的配置信息情况：
+2. `postcss.config.js` 文件现在的配置信息情况：
 
 ```
 module.exports = {

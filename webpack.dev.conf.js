@@ -1,81 +1,28 @@
-
-## 安装 babel 相关插件
-
-```
-npm install babel-loader @babel/core @babel/preset-env @babel/runtime @babel/plugin-transform-runtime -D
-```
-
-
-#### 项目根目录添加 `.babelrc` 文件
-
-在 `.babelrc` 文件中加入以下代码：
-
-```
-{
-  "presets": [
-    ["@babel/preset-env", {
-      "modules": false,
-      "targets": {
-        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
-      },
-      "useBuiltIns": "usage"
-    }]
-  ],
-  "plugins": [
-    "@babel/plugin-transform-runtime"
-  ]
-}
-```
-
-同时，需要在 `webpack.dev.conf.js` 文件中，增加 `babel-loader`,代码如下：
-
-```
-module: {
-    rules: [
-        {
-            test: /\.(js|jsx)$/,
-            use: ['babel-loader?cacheDirectory=true'],
-            include: path.resolve(__dirname, 'src')
-        }
-    ]
-}
-```
-
-至此，`babel` 相关配置，告一段落
-
-
-
-## 相关文件配置信息更新情况
-
-#### 以下为本文已涉及到的配置文件的当前详细信息
-
-
-1. `webpack.dev.conf.js` 文件现在的配置信息情况：
-
-```
 const path = require("path");
-const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const open = require('opn');//打开浏览器
 const chalk = require('chalk');// 改变命令行中输出日志颜色插件
 const ip = require('ip').address();
+const webpack = require("webpack");
 
-module.exports = {
-    // 入口文件配置项
+// 版本号
+const appVersion = new Date().getTime()
+// 网站图标
+const favicon = path.resolve(process.cwd(), 'src/favicon.ico')
+
+module.exports={
     entry:{
         app:[path.resolve(__dirname, 'src/index.js')],
     },
-    // 输出文件配置项
     output:{
-        path:path.resolve(__dirname,"dist"),
+        path:path.resolve(__dirname,'dist'),
         filename: 'js/[name].[hash].js',
         chunkFilename: 'js/[name].[chunkhash].js',
         publicPath:""
     },
+    mode:"development",
     // 开发工具
     devtool: 'eval-source-map',
-    // webpack4.x 环境配置项
-    mode:"development",
     // 加载器 loader 配置项
     module:{
         rules:[
@@ -86,17 +33,15 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [{
-                        loader: 'style-loader'
-                    },{
-                        loader: 'css-loader'
-                    },{
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                            config: {
-                                path: 'postcss.config.js'
-                            }
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'postcss-loader',
+                      options: {
+                        sourceMap: true,
+                        config: {
+                            path: 'postcss.config.js'
+                        }
                         }
                     }
                 ]
@@ -125,8 +70,7 @@ module.exports = {
                     }
                 ],
                 exclude: /node_modules/
-            },
-            {
+            },{// 编译less
                 test: /\.less$/,
                 use: [
                     {
@@ -156,7 +100,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|jp?g|gif|svg)$/,
+                test: /\.(png|jp?g|gif|svg|ico)$/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -165,7 +109,7 @@ module.exports = {
                             name:'images/[name].[hash:8].[ext]',
                             publicPath:''
                         }
-                    }
+                    },
                 ]
             },
             {
@@ -201,17 +145,28 @@ module.exports = {
                         publicPath:''
                     },
                 }],
-            }, {
-                test:/\.html$/,
-                use:[
-                    {
-                        loader:"html-loader",
-                        options:{
-                            attrs:["img:src","img:data-src"] 
-                        }
-                    }
-                ]
-            }
+            }, 
+            // {
+            //     test: /\.html$/,
+            //     use: [{
+            //         loader: 'html-loader',
+            //         options: {
+            //             attrs: ['img:src', 'img:data-src'],
+            //             minimize: false
+            //         }
+            //     }]
+            // },
+            // { // 引用外部第三方js库并设置为全局属性时需要的loader
+            //     test: require.resolve('./src/lib/jquery.js'),
+            //     use: [{
+            //         loader: 'expose-loader',
+            //          暴露出去的全局变量的名称 随便你自定义
+            //         options: 'jQuery'
+            //     }, {
+            //         loader: 'expose-loader',
+            //         options: '$'
+            //     }]
+            // },
         ]
     },
     // 插件配置项
@@ -219,9 +174,28 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',//输出文件的名称
             template: path.resolve(__dirname, 'src/index.html'),//模板文件的路径
-            title:'webpack-主页',//配置生成页面的标题
+            title:'webpack4.x',//配置生成页面的标题
+            minify:{
+                removeRedundantAttributes:true, // 删除多余的属性
+                collapseWhitespace:true, // 折叠空白区域
+                removeAttributeQuotes: true, // 移除属性的引号
+                removeComments: true, // 移除注释
+                collapseBooleanAttributes: true // 省略只有 boolean 值的属性值 例如：readonly checked
+            },
+            favicon,
+            appVersion
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        // 跳过编译时出错的代码并记录，使编译后运行时的包不会发生错误
+        new webpack.NoEmitOnErrorsPlugin(),
+        // 友好的终端错误显示方式
+        // new FriendlyErrorsPlugin(),
+        // 暴露给全局
+        // new webpack.ProvidePlugin({
+        //     $: "jquery",
+        //     jQuery: "jquery",
+        //     "window.jQuery": "jquery"
+        // })
     ],
     // 开发服务配置项
     devServer: {
@@ -232,15 +206,27 @@ module.exports = {
         overlay:true,
         hot:true,
         inline:true,
-        after(){
+        after() {
             open(`http://${ip}:${this.port}`)
             .then(() => {
-                console.log(chalk.cyan(`http://${ip}:${this.port} 已成功打开`));
+                console.log(chalk.cyan(`成功打开链接： http://${ip}:${this.port}`));
             })
             .catch(err => {
                 console.log(chalk.red(err));
             });
         }
-    }
+    },
+    resolve: {
+        // 设置可省略文件后缀名
+        extensions: [' ','.js','.json','.jsx','.vue'],
+        // 查找 module 的话从这里开始查找;
+        modules: [path.resolve(__dirname, "src"), path.resolve(__dirname, "node_modules")], // 绝对路径;
+        // 配置路径映射（别名）
+        alias: {
+          '@': path.resolve('src'),
+        //   'jquery': path.resolve(__dirname, './src/lib/jquery'),
+        //   'jQuery': path.resolve(__dirname, './src/lib/jquery'),
+        //   '$': path.resolve(__dirname, './src/lib/jquery'),
+        }
+    },
 }
-```

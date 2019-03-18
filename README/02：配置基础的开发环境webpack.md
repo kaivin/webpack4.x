@@ -24,7 +24,7 @@ npm install webpack webpack-cli -D
 
 ## 配置最基础的 webpack
 
-#### 项目根目录创建 webpack.dev.config.js 文件，作为开发环境的 webpack 配置文件，先加上如下代码
+#### 项目根目录创建 webpack.dev.conf.js 文件，作为开发环境的 webpack 配置文件，先加上如下代码
 
 
 ```
@@ -78,7 +78,7 @@ module.exports = {
 document.getElementById('app').innerHTML = "Webpack works";
 ```
 
-入口文件有了，开始配置 `webpack.dev.config.js` 配置如下：
+入口文件有了，开始配置 `webpack.dev.conf.js` 配置如下：
 
 ```
 const path = require("path");
@@ -159,7 +159,7 @@ console.log("--------" + path.resolve(__dirname,"src/index.js"));
 
 #### 以下为本文已涉及到的配置文件的当前详细信息
 
-1. `webpack.dev.config.js` 文件现在的配置信息情况：
+1. `webpack.dev.conf.js` 文件现在的配置信息情况：
 
 ```
 const path = require("path");
@@ -175,27 +175,5 @@ module.exports = {
     },
     // webpack4.x 环境配置项
     mode:"development",
-}
-```
-
-2. `package.json` 文件现在的配置信息情况：
-
-```
-{
-  "name": "webpack-demo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "webpack --config webpack.dev.config.js",
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.15"
-  }
 }
 ```

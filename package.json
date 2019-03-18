@@ -4,9 +4,9 @@
   "description": "使用postcss、webpack4、babel7处理静态页面",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --config config/webpack/webpack.dev.config.js",
-    "start": "webpack-dev-server --config config/webpack/webpack.dev.config.js --color --progress",
-    "build": "webpack --config config/webpack/webpack.production.config.js"
+    "dev": "webpack --config webpack.dev.conf.js",
+    "start": "webpack-dev-server --config webpack.dev.conf.js --color --progress",
+    "build": "webpack --config webpack.prod.conf.js"
   },
   "keywords": [
     "webpack4",
@@ -30,7 +30,9 @@
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^2.0.0",
     "css-loader": "^2.1.1",
+    "ejs-loader": "^0.3.1",
     "file-loader": "^3.0.1",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "ip": "^1.1.5",
     "less": "^3.0.2",
@@ -39,8 +41,11 @@
     "node-sass": "^4.11.0",
     "opn": "^5.4.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-aspect-ratio-mini": "^1.0.1",
     "postcss-loader": "^3.0.0",
+    "postcss-px-to-viewport": "^1.1.0",
     "postcss-scss": "^2.0.0",
+    "postcss-write-svg": "^3.0.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.1.2",

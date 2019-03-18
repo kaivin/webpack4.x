@@ -8,7 +8,12 @@
 **这里只是单独的 webpack 配置，后续会出配合 `koa` `react` `vue` 的配置**
 
 ## 更新
-
+#### 2019.03.18
+* 删除框架结构整合相关内容，该内容不再进行框架结构整合
+* 新增`viewport`适配移动端配置
+* 新增`yarn`下载插件方案
+* 文档内容进行微调，文件名进行微调
+#### 2019.03.12
 * 配置 `scss` 的笔记有所修改，将避免一些无法预知的错误
 * 配置 `babel` 的笔记有所修改，`babel`版本升级到7以上，避免版本不一致报错
 
@@ -21,6 +26,7 @@
 * 生产环境：代码压缩、分离 CSS 文件 
 * 支持 scss less postcss、babel、CSS3自动添加前缀、base64、字体图标、视频文件、音频文件、代码调试、提取公共代码、路径优化别名配置
 * 第三方库与业务代码拆分
+* 支持 viewport 适配移动端
 
 ## 配置步骤
 
@@ -39,26 +45,27 @@
 13. [生产环境代码压缩][13] 
 14. [开发、生产环境的拆分代码][14] 
 15. [模版解析配置项][15] 
-16. [优化项目框架结构][16] 
+16. [viewport适配移动端][16] 
+17. [yarn替代npm方案][17] 
 
 ## 命令
 
 1. 安装
 
 ```
-npm install
+yarn install
 ```
 
 2. 运行开发环境
 
 ```
-npm start
+yarn start
 ```
 
 3. 输出生产环境
 
 ```
-npm run build
+yarn run build
 ```
 
 
@@ -77,4 +84,5 @@ npm run build
 [13]:https://github.com/kaivin/webpack4.x/blob/master/README/13：生产环境代码压缩.md "生产环境代码压缩" 
 [14]:https://github.com/kaivin/webpack4.x/blob/master/README/14：开发、生产环境的拆分代码.md "开发、生产环境的拆分代码" 
 [15]:https://github.com/kaivin/webpack4.x/blob/master/README/15：模版解析配置项.md "模版解析配置项" 
-[16]:https://github.com/kaivin/webpack4.x/blob/master/README/16：优化项目框架结构.md "优化项目框架结构" 
+[16]:https://github.com/kaivin/webpack4.x/blob/master/README/16：viewport适配移动端.md "viewport适配移动端" 
+[17]:https://github.com/kaivin/webpack4.x/blob/master/README/17：yarn替代npm方案.md "yarn替代npm方案" 

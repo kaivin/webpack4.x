@@ -27,7 +27,7 @@ npm install html-webpack-plugin -D
 
 以上代码 `title` 中 `<%= htmlWebpackPlugin.options.title%>` 是插件 `html-webpack-plugin` 的功能，让我们可以配置该页面的标题。
 
-接下来，我们修改 `webpack.dev.config.js` 文件，首先是引入该插件
+接下来，我们修改 `webpack.dev.conf.js` 文件，首先是引入该插件
 
 ```
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -55,7 +55,7 @@ plugins: [
 
 #### 以下为本文已涉及到的配置文件的当前详细信息
 
-1. `webpack.dev.config.js` 文件现在的配置信息情况：
+1. `webpack.dev.conf.js` 文件现在的配置信息情况：
 
 ```
 const path = require("path");
@@ -80,29 +80,5 @@ module.exports = {
             title:'webpack-主页',//配置生成页面的标题
         }),
     ]
-}
-```
-
-2. `package.json` 文件现在的配置信息情况：
-
-```
-{
-  "name": "webpack-demo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "webpack --config webpack.dev.config.js",
-    "start": "webpack-dev-server --config webpack.dev.config.js --color --progress"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
-    "html-webpack-plugin": "^3.2.0",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.15"
-  }
 }
 ```
