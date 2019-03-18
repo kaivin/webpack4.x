@@ -156,17 +156,16 @@ module.exports={
             //         }
             //     }]
             // },
-            // { // 引用外部第三方js库并设置为全局属性时需要的loader
-            //     test: require.resolve('./src/lib/jquery.js'),
-            //     use: [{
-            //         loader: 'expose-loader',
-            //          暴露出去的全局变量的名称 随便你自定义
-            //         options: 'jQuery'
-            //     }, {
-            //         loader: 'expose-loader',
-            //         options: '$'
-            //     }]
-            // },
+            {
+                test: require.resolve('jquery'),
+                use: [{
+                    loader: 'expose-loader',
+                    options: 'jQuery'
+                },{
+                    loader: 'expose-loader',
+                    options: '$'
+                }]
+            }
         ]
     },
     // 插件配置项
@@ -190,12 +189,6 @@ module.exports={
         new webpack.NoEmitOnErrorsPlugin(),
         // 友好的终端错误显示方式
         // new FriendlyErrorsPlugin(),
-        // 暴露给全局
-        // new webpack.ProvidePlugin({
-        //     $: "jquery",
-        //     jQuery: "jquery",
-        //     "window.jQuery": "jquery"
-        // })
     ],
     // 开发服务配置项
     devServer: {
