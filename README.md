@@ -47,6 +47,7 @@
 15. [模版解析配置项][15] 
 16. [viewport适配移动端][16] 
 17. [yarn替代npm方案][17] 
+18. [html-loader与HtmlWebpackPlugin的冲突][18] 
 
 ## 命令
 
@@ -86,3 +87,4 @@ yarn run build
 [15]:https://github.com/kaivin/webpack4.x/blob/master/README/15：模版解析配置项.md "模版解析配置项" 
 [16]:https://github.com/kaivin/webpack4.x/blob/master/README/16：viewport适配移动端.md "viewport适配移动端" 
 [17]:https://github.com/kaivin/webpack4.x/blob/master/README/17：yarn替代npm方案.md "yarn替代npm方案" 
+[18]:https://github.com/kaivin/webpack4.x/blob/master/README/18：html-loader与HtmlWebpackPlugin的冲突.md "html-loader与HtmlWebpackPlugin的冲突" 
