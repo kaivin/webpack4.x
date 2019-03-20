@@ -8,13 +8,16 @@
 **这里只是单独的 webpack 配置，后续会出配合 `koa` `react` `vue` 的配置**
 
 ## 更新
+#### 2019.03.20
+* 新增测试环境配置文件及命令
+* 新增发布、预览测试及生产环境
 #### 2019.03.18
 * 删除框架结构整合相关内容，该内容不再进行框架结构整合
 * 新增`viewport`适配移动端配置
 * 新增`yarn`下载插件方案
 * 文档内容进行微调，文件名进行微调
 * 修正`html-loader`与`HtmlWebpackPlugin`的冲突问题
-* 新增引入第三方库（`jquery`等）的便捷方法
+* 新增引入第三方库（`jquery`,`SuperSlide`等）的便捷方法
 #### 2019.03.12
 * 配置 `scss` 的笔记有所修改，将避免一些无法预知的错误
 * 配置 `babel` 的笔记有所修改，`babel`版本升级到7以上，避免版本不一致报错
@@ -51,13 +54,14 @@
 17. [yarn替代npm方案][17] 
 18. [html-loader与HtmlWebpackPlugin的冲突][18] 
 19. [引入第三方插件库][19] 
+20. [发布并预览测试及生产环境][20] 
 
 ## 命令
 
 1. 安装
 
 ```
-yarn install
+yarn / yarn install
 ```
 
 2. 运行开发环境
@@ -66,10 +70,16 @@ yarn install
 yarn start
 ```
 
-3. 输出生产环境
+3. 输出测试环境
 
 ```
-yarn run build
+yarn test
+```
+
+4. 输出生产环境
+
+```
+yarn build
 ```
 
 
@@ -91,4 +101,5 @@ yarn run build
 [16]:https://github.com/kaivin/webpack4.x/blob/master/README/16：viewport适配移动端.md "viewport适配移动端" 
 [17]:https://github.com/kaivin/webpack4.x/blob/master/README/17：yarn替代npm方案.md "yarn替代npm方案" 
 [18]:https://github.com/kaivin/webpack4.x/blob/master/README/18：html-loader与HtmlWebpackPlugin的冲突.md "html-loader与HtmlWebpackPlugin的冲突" 
-[19]:https://github.com/kaivin/webpack4.x/blob/master/README/17：引入第三方插件库.md "引入第三方插件库" 
+[19]:https://github.com/kaivin/webpack4.x/blob/master/README/19：引入第三方插件库.md "引入第三方插件库" 
+[20]:https://github.com/kaivin/webpack4.x/blob/master/README/20：发布并预览测试及生产环境.md "发布并预览测试及生产环境" 

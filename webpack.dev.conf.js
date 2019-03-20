@@ -158,14 +158,16 @@ module.exports={
             // },
             {
                 test: require.resolve('jquery'),
-                use: [{
+                use: [
+                    {
                     loader: 'expose-loader',
                     options: 'jQuery'
-                },{
+                },
+                {
                     loader: 'expose-loader',
                     options: '$'
                 }]
-            }
+            },
         ]
     },
     // 插件配置项
@@ -217,9 +219,6 @@ module.exports={
         // 配置路径映射（别名）
         alias: {
           '@': path.resolve('src'),
-        //   'jquery': path.resolve(__dirname, './src/lib/jquery'),
-        //   'jQuery': path.resolve(__dirname, './src/lib/jquery'),
-        //   '$': path.resolve(__dirname, './src/lib/jquery'),
         }
     },
 }

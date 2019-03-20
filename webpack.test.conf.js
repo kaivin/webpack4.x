@@ -3,8 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // 生成 html 文件
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 分离 css 文件
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清除生成文件
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩 JS
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // 压缩 css
 
 // 版本号
 const appVersion = new Date().getTime()
@@ -16,12 +14,14 @@ module.exports={
         app:[path.resolve(__dirname, 'src/index.js')],
     },
     output:{
-        path:path.resolve(__dirname,'dist'),
+        path:path.resolve(__dirname,'test'),
         filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[name].[chunkhash].js',
         publicPath:"/"
     },
     mode:"production",
+    // 开发工具
+    devtool: 'cheap-module-source-map',
     // 加载器 loader 配置项
     module:{
         rules:[
@@ -37,7 +37,7 @@ module.exports={
                     { loader: 'css-loader' },
                     { loader: 'postcss-loader',
                       options: {
-                        publicPath:"",
+                        sourceMap: true,
                         config: {
                             path: 'postcss.config.js'
                         }
@@ -55,6 +55,7 @@ module.exports={
                     {
                         loader: 'postcss-loader',
                         options: {
+                            sourceMap: true,
                             config: {
                                 path: 'postcss.config.js'
                             }
@@ -62,9 +63,7 @@ module.exports={
                     },
                     {
                         loader: 'sass-loader', 
-                        options: { 
-                            publicPath:""
-                         }
+                        options: { sourceMap: true }
                     }
                 ],
                 exclude: /node_modules/
@@ -90,7 +89,7 @@ module.exports={
                     {
                         loader: 'less-loader', 
                         options: { 
-                            publicPath:""
+                            sourceMap: true,
                         }
                     }
                 ]
@@ -167,18 +166,18 @@ module.exports={
               },
             }
         },
-        runtimeChunk: {
-            name: 'manifest'
-        },
-        minimizer: [ // 用于配置 minimizers 和选项
-            // webpack 不支持es6语法的压缩，这里要使用需要babel配合
-            new UglifyJsPlugin({
-                cache: true,
-                parallel: true,
-                sourceMap: true // set to true if you want JS source maps
-            }),// 压缩 js
-            new OptimizeCSSAssetsPlugin({}), // 压缩 css
-        ]
+        // runtimeChunk: {
+        //     name: 'manifest'
+        // },
+        // minimizer: [ // 用于配置 minimizers 和选项
+        //     // webpack 不支持es6语法的压缩，这里要使用需要babel配合
+        //     new UglifyJsPlugin({
+        //         cache: true,
+        //         parallel: true,
+        //         sourceMap: true // set to true if you want JS source maps
+        //     }),// 压缩 js
+        //     new OptimizeCSSAssetsPlugin({}), // 压缩 css
+        // ]
     },
     // 插件配置项
     plugins: [
@@ -187,13 +186,6 @@ module.exports={
             filename: 'index.html',//输出文件的名称
             template: path.resolve(__dirname, 'src/index.html'),//模板文件的路径
             title:'webpack4.x',//配置生成页面的标题
-            minify:{
-                removeRedundantAttributes:true, // 删除多余的属性
-                collapseWhitespace:true, // 折叠空白区域
-                removeAttributeQuotes: true, // 移除属性的引号
-                removeComments: true, // 移除注释
-                collapseBooleanAttributes: true // 省略只有 boolean 值的属性值 例如：readonly checked
-            }, // 压缩 html 文件
             favicon,
             appVersion
         }),

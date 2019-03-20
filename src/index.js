@@ -2,8 +2,9 @@ import './assets/styles/reset.css';
 import './assets/styles/public.scss';
 import './assets/styles/index.less';
 
-import image from './assets/images/favicon.png';
 require('jquery');
+require('./assets/js/jquery.SuperSlide.2.1.1.js');
+import image from './assets/images/favicon.png';
 if (module.hot) {
     module.hot.accept();
 }
@@ -17,4 +18,5 @@ var strHtml = "<h1>我自动添加了浏览器前缀</h1><img src='"+ image +"'/
 $(function(){
     $("#postcss").html(strHtml);
 });
+jQuery(".slideTxtBox").slide();
 //document.getElementById('postcss').innerHTML = "<h1>我自动添加了浏览器前缀</h1><img src='"+ image +"'/><span class='icon iconfont icon-toPay'></span>";
