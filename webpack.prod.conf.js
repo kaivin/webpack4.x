@@ -5,6 +5,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 分离 css �
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清除生成文件
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩 JS
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // 压缩 css
+const copyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // 版本号
 const appVersion = new Date().getTime()
@@ -202,6 +204,24 @@ module.exports={
             chunkFilename: 'css/[name].[hash].css',
         }),
         new CleanWebpackPlugin(),// 删除 dist 文件夹
+        new copyWebpackPlugin([
+            {
+                from:path.resolve(__dirname+'/static'),// 打包的静态资源目录地址
+                to:'./static' // 打包到dist下面的static
+            },
+            {
+                from:path.resolve(__dirname+'/README'),// 打包的静态资源目录地址
+                to:'./README' // 打包到dist下面的README
+            },
+        ]),
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'static',
+            //  是否在默认浏览器中自动打开报告
+            openAnalyzer: false,
+            //  将在“服务器”模式下使用的端口启动HTTP服务器。
+            analyzerPort: 9528, 
+            reportFilename: 'static/report.html',
+        })
     ],
     resolve: {
         // 设置可省略文件后缀名
