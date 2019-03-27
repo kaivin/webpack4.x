@@ -8,6 +8,9 @@
 **这里只是单独的 webpack 配置，后续会出配合 `koa` `react` `vue` 的配置**
 
 ## 更新
+#### 2019.03.27
+* 新增生产环境打包静态资源
+* 新增辅助插件：`cross-env`,`friendly-errors-webpack-plugin`,`node-notifier`,`webpack-bundle-analyzer` 的配置
 #### 2019.03.20
 * 新增测试环境配置文件及命令
 * 新增发布、预览测试及生产环境
@@ -55,6 +58,8 @@
 18. [html-loader与HtmlWebpackPlugin的冲突][18] 
 19. [引入第三方插件库][19] 
 20. [发布并预览测试及生产环境][20] 
+21. [生产环境打包静态资源][21] 
+22. [借助辅助插件让开发更优雅][22] 
 
 ## 命令
 
@@ -103,3 +108,5 @@ yarn build
 [18]:https://github.com/kaivin/webpack4.x/blob/master/README/18：html-loader与HtmlWebpackPlugin的冲突.md "html-loader与HtmlWebpackPlugin的冲突" 
 [19]:https://github.com/kaivin/webpack4.x/blob/master/README/19：引入第三方插件库.md "引入第三方插件库" 
 [20]:https://github.com/kaivin/webpack4.x/blob/master/README/20：发布并预览测试及生产环境.md "发布并预览测试及生产环境" 
+[21]:https://github.com/kaivin/webpack4.x/blob/master/README/21：生产环境打包静态资源.md "生产环境打包静态资源" 
+[22]:https://github.com/kaivin/webpack4.x/blob/master/README/22：借助辅助插件让开发更优雅.md "借助辅助插件让开发更优雅" 
