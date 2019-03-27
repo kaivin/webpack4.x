@@ -4,6 +4,8 @@ const open = require('opn');//打开浏览器
 const chalk = require('chalk');// 改变命令行中输出日志颜色插件
 const ip = require('ip').address();
 const webpack = require("webpack");
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const notifier = require('node-notifier');
 
 // 版本号
 const appVersion = new Date().getTime()
@@ -20,7 +22,6 @@ module.exports={
         chunkFilename: 'js/[name].[chunkhash].js',
         publicPath:""
     },
-    mode:"development",
     // 开发工具
     devtool: 'eval-source-map',
     // 加载器 loader 配置项
@@ -190,7 +191,31 @@ module.exports={
         // 跳过编译时出错的代码并记录，使编译后运行时的包不会发生错误
         new webpack.NoEmitOnErrorsPlugin(),
         // 友好的终端错误显示方式
-        // new FriendlyErrorsPlugin(),
+        new FriendlyErrorsPlugin({
+            // 运行成功
+            compilationSuccessInfo:{
+                message:[`你的应用程序在这里运行：http://${ip}:${this.port}`],
+                // notes:['有些附加说明要在成功编辑时显示']
+            },
+            //  运行错误
+            onErrors:function(severity,errors){
+                // 可以收听插件转换和优先级的错误
+                // 严重性可以是'错误'或'警告'
+                if (severity !== 'error') {
+                    return;
+                  }
+                  const error = errors[0];
+                  notifier.notify({
+                    title: "Webpack error",
+                    message: severity + ': ' + error.name,
+                    subtitle: error.file || '',
+                    // icon: ICON
+                  });
+            },
+            //是否每次编译之间清除控制台
+            //默认为true
+            clearConsole:true,
+        }),
     ],
     // 开发服务配置项
     devServer: {

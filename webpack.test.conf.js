@@ -19,7 +19,6 @@ module.exports={
         chunkFilename: 'js/[name].[chunkhash].js',
         publicPath:"/"
     },
-    mode:"production",
     // 开发工具
     devtool: 'cheap-module-source-map',
     // 加载器 loader 配置项
