@@ -23,6 +23,7 @@ module.exports={
         chunkFilename: 'js/[name].[chunkhash].js',
         publicPath:"/"
     },
+    mode:"production",
     // 加载器 loader 配置项
     module:{
         rules:[

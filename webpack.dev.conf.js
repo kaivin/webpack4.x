@@ -22,6 +22,7 @@ module.exports={
         chunkFilename: 'js/[name].[chunkhash].js',
         publicPath:""
     },
+    mode:"development",
     // 开发工具
     devtool: 'eval-source-map',
     // 加载器 loader 配置项
