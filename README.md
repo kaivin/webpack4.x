@@ -8,6 +8,11 @@
 **这里只是单独的 webpack 配置，后续会出配合 `koa` `react` `vue` 的配置**
 
 ## 更新
+#### 2019.04.02
+* 修正部分表述错误的地方
+* 新增引入第三方插件的几种方法对比及具体配置
+* 新增测试、生产环境对代码打包及拆分`optimization`配置的使用技巧
+* 对配置文件进行了微调
 #### 2019.03.27
 * 新增生产环境打包静态资源
 * 新增辅助插件：`cross-env`,`friendly-errors-webpack-plugin`,`node-notifier`,`webpack-bundle-analyzer` 的配置
@@ -60,6 +65,8 @@
 20. [发布并预览测试及生产环境][20] 
 21. [生产环境打包静态资源][21] 
 22. [借助辅助插件让开发更优雅][22] 
+23. [细说webpack4引入第三方库][23] 
+24. [细说webpack4打包及拆分代码][24] 
 
 ## 命令
 
@@ -110,3 +117,5 @@ yarn build
 [20]:https://github.com/kaivin/webpack4.x/blob/master/README/20：发布并预览测试及生产环境.md "发布并预览测试及生产环境" 
 [21]:https://github.com/kaivin/webpack4.x/blob/master/README/21：生产环境打包静态资源.md "生产环境打包静态资源" 
 [22]:https://github.com/kaivin/webpack4.x/blob/master/README/22：借助辅助插件让开发更优雅.md "借助辅助插件让开发更优雅" 
+[23]:https://github.com/kaivin/webpack4.x/blob/master/README/23：细说webpack4引入第三方库.md "细说webpack4引入第三方库" 
+[24]:https://github.com/kaivin/webpack4.x/blob/master/README/24：细说webpack4打包及拆分代码.md "细说webpack4打包及拆分代码" 

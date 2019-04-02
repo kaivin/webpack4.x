@@ -28,6 +28,18 @@ module.exports={
     module:{
         rules:[
             {
+                test: require.resolve('jquery'),
+                use: [
+                    {
+                    loader: 'expose-loader',
+                    options: 'jQuery'
+                },
+                {
+                    loader: 'expose-loader',
+                    options: '$'
+                }]
+            },
+            {
                 test: /\.(js|jsx)$/,
                 use: ['babel-loader?cacheDirectory=true'],
                 include: [path.resolve(__dirname, 'src'), path.resolve('node_modules/webpack-dev-server/client')]
@@ -144,18 +156,6 @@ module.exports={
                     },
                 }],
             }, 
-            {
-                test: require.resolve('jquery'),
-                use: [
-                    {
-                    loader: 'expose-loader',
-                    options: 'jQuery'
-                },
-                {
-                    loader: 'expose-loader',
-                    options: '$'
-                }]
-            },
         ]
     },
     optimization: {

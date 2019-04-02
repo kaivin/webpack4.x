@@ -29,6 +29,18 @@ module.exports={
     module:{
         rules:[
             {
+                test: require.resolve('jquery'),
+                use: [
+                    {
+                    loader: 'expose-loader',
+                    options: 'jQuery'
+                },
+                {
+                    loader: 'expose-loader',
+                    options: '$'
+                }]
+            },
+            {
                 test: /\.(js|jsx)$/,
                 use: ['babel-loader?cacheDirectory=true'],
                 include: path.resolve(__dirname, 'src')
@@ -158,18 +170,6 @@ module.exports={
             //         }
             //     }]
             // },
-            {
-                test: require.resolve('jquery'),
-                use: [
-                    {
-                    loader: 'expose-loader',
-                    options: 'jQuery'
-                },
-                {
-                    loader: 'expose-loader',
-                    options: '$'
-                }]
-            },
         ]
     },
     // 插件配置项
@@ -217,7 +217,16 @@ module.exports={
             //默认为true
             clearConsole:true,
         }),
+        // new webpack.ProvidePlugin({
+        //     $: 'jquery',
+        //     jQuery: 'jquery',
+        //     'window.jQuery': 'jquery',
+        //     'window.$': 'jquery',
+        // })
     ],
+    // externals: {
+    //     jquery: 'jQuery'
+    // },
     // 开发服务配置项
     devServer: {
         port: 8080,
