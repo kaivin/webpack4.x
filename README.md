@@ -9,7 +9,8 @@
 
 ## 更新
 #### 2019.04.03
-* webpack的代码打包拆分功能做进一步详细讲解记录
+* `webpack`的代码打包拆分功能做进一步详细讲解记录
+* 新增`wepack`引入`eslint`的配置步骤
 #### 2019.04.02
 * 修正部分表述错误的地方
 * 新增引入第三方插件的几种方法对比及具体配置
@@ -69,6 +70,7 @@
 22. [借助辅助插件让开发更优雅][22] 
 23. [细说webpack4引入第三方库][23] 
 24. [细说webpack4打包及拆分代码][24] 
+25. [webpack引入eslint][25] 
 
 ## 命令
 
@@ -121,3 +123,4 @@ yarn build
 [22]:https://github.com/kaivin/webpack4.x/blob/master/README/22：借助辅助插件让开发更优雅.md "借助辅助插件让开发更优雅" 
 [23]:https://github.com/kaivin/webpack4.x/blob/master/README/23：细说webpack4引入第三方库.md "细说webpack4引入第三方库" 
 [24]:https://github.com/kaivin/webpack4.x/blob/master/README/24：细说webpack4打包及拆分代码.md "细说webpack4打包及拆分代码" 
+[25]:https://github.com/kaivin/webpack4.x/blob/master/README/25：webpack引入eslint.md "webpack引入eslint" 
