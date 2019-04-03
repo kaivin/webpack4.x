@@ -14,7 +14,7 @@ const favicon = path.resolve(process.cwd(), 'src/favicon.ico')
 module.exports={
     entry:{
         app:[path.resolve(__dirname, 'src/index.js')],
-        vendor: ["jquery","vue",'vue-router']
+        superSlide: [path.resolve(__dirname, 'src/assets/js/jquery.SuperSlide.2.1.1.js')],
     },
     output:{
         path:path.resolve(__dirname,'test'),
@@ -159,29 +159,38 @@ module.exports={
         ]
     },
     optimization: {
+        namedChunks: true,
+        moduleIds: 'hashed',
         splitChunks: {
+            maxInitialRequests: 6,
             cacheGroups: {
-              a: {
-                chunks:'initial',
-                test: /[\\/]node_modules[\\/]/,
-                name: 'vendor',
-                priority: 10,
-                enforce: true,
-              },
+                dll: {
+                    chunks:'all',
+                    test: /[\\/]node_modules[\\/](jquery|core-js|vue|vue-router)[\\/]/,
+                    name: 'dll',
+                    priority: 2,
+                    enforce: true,
+                    reuseExistingChunk: true
+                },
+                superSlide: {
+                    chunks:'all',
+                    test: /[\\/]src[\\/]assets[\\/]js[\\/]/,
+                    name: 'superSlide',
+                    priority: 1,
+                    enforce: true,
+                    reuseExistingChunk: true
+                },
+                commons: {
+                    name: 'commons',
+                    minChunks: 2,//Math.ceil(pages.length / 3), 当你有多个页面时，获取pages.length，至少被1/3页面的引入才打入common包
+                    chunks:'all',
+                    reuseExistingChunk: true
+                }
             }
         },
         runtimeChunk: {
             name: 'manifest'
         },
-        // minimizer: [ // 用于配置 minimizers 和选项
-        //     // webpack 不支持es6语法的压缩，这里要使用需要babel配合
-        //     new UglifyJsPlugin({
-        //         cache: true,
-        //         parallel: true,
-        //         sourceMap: true // set to true if you want JS source maps
-        //     }),// 压缩 js
-        //     new OptimizeCSSAssetsPlugin({}), // 压缩 css
-        // ]
     },
     // 插件配置项
     plugins: [
