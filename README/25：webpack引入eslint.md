@@ -96,14 +96,11 @@ module.exports = {
       "arrow-parens": 0,
       "no-new":0//允许使用 new 关键字
     },
-    // global:{// 允许全局变量,将$设置为true，表示允许使用全局变量$
-    //     $:false,
-    // }
 }
 ```
 修改完后，我们要确保`webpack.dev.conf.js`文件的本地服务的配置项`overly`为`true`，当我们运行`yarn start` 时，终端就会显示所有语法错误了。
 
-这里我暂时没有配置`global`，因为我配置`$`后，报的错并未找到具体解决办法，注释掉后，错误不存在了，然后我们再次运行`yarn start`，这是报了这样一个错误：
+然后运行`yarn start`，这时报了这样一个错误：
 
 ```
 Error:options/query cannot be used with loaders
@@ -153,7 +150,58 @@ Error:options/query cannot be used with loaders
 },
 ```
 
-然后再次运行`yarn start`，可以看到终端中，已经不再有该`js`文件引起的语法报错了~，剩下的那些就看通过修正，或者忽略的方式全部排查掉吧~
+然后再次运行`yarn start`，可以看到终端中，已经不再有该`js`文件引起的语法报错了~；
+
+再仔细看看报错中都有哪些错误，本项目集中有以下错误：
+
+```
+no-undef             '$' is not defined // 配置了检测全局变量 $检测未定义
+no-undef             'jQuery' is not defined // jQuery检测未定义
+import%2Ffirst       Import in body of module; reorder to top // import 的模块必须在其他业务代码之前，包括必须在require之前
+quotes               Strings must use doublequote // 字符串必须使用双引号规则
+space-infix-ops      Operator '+' must be spaced // 连字符 + 号前后必须有空格
+space-before-blocks  Missing space before opening brace // 函数大括号前面必须有空格
+spaced-comment       Expected space or tab after '//' in comment // 双斜线的注释方法，注释文本与双斜线之间必须有空格或者`tab`制表符缩进
+```
+
+这里的错误，先说`no-undef`，想修改，可以在`rules`中关闭该检测功能，也可以在`globals`中配置可以用于全局的变量白名单，
+
+先说在`rules`中如何关闭：
+
+```
+rules: { // 重新覆盖 extends: 'standard'的规则
+    ...
+    "no-undef":0,// 关闭全局变量检测
+},
+```
+前面已经说过，`1`或`2`是开启规则，一个是警告模式，一个是错误模式，`0`是关闭规则，只需将该规则的数值改为`0`即可;
+
+当然我们也可以在`globals`中配置白名单来让全局变量合法化：
+
+```
+globals:{// 允许全局变量,将$设置为true，表示允许使用全局变量$
+    "document": true,
+    "localStorage": true,
+    "window": true,
+    "jQuery":true,
+    $:true
+}
+```
+
+再次运行`yarn start` 可以发现有关`no-undef`的报错已经消失了，找到方法了，那么剩下就简单了~
+
+再说一下`quotes`的报错，实际项目中，并不一定只用一种引号方式，很多会单引号、双引号混合使用，所以这条规则我们可以关闭它，不对字符串使用引号做检测
+
+```
+rules: { // 重新覆盖 extends: 'standard'的规则
+    ...
+    "quotes":0,// 关闭全局变量检测
+},
+```
+
+剩下的`import%2Ffirst` ,`space-infix-ops`,`space-before-blocks`,`spaced-comment`，根据我上面的注释可以知道都是哪些地方报的错，终端报错也会提示是在哪个文件哪一行哪个位置。其实知道这些规则是什么意思后，就非常好修改了~
+
+全部修改完后再次运行`yarn start` 这次终端终于干净了，不再有`eslint`的报错信息了~
 
 当然，这里的`eslint`配置并不全面，比如支持`vue`，支持`react`等等，具体项目，再具体配置相关插件即可~
 

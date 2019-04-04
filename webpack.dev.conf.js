@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const open = require('opn');//打开浏览器
+const open = require('opn');// 打开浏览器
 const chalk = require('chalk');// 改变命令行中输出日志颜色插件
 const ip = require('ip').address();
 const webpack = require("webpack");
@@ -55,8 +55,8 @@ module.exports={
                 test: /\.(js|jsx)$/,
                 use: [{
                     loader:'babel-loader',
-                    options:{//options、query不能和loader数组一起使用
-                        cacheDirectory:true//利用缓存，提高性能，babel is slow
+                    options:{// options、query不能和loader数组一起使用
+                        cacheDirectory:true// 利用缓存，提高性能，babel is slow
                     },
                 }],
                 include: path.resolve(__dirname, 'src'),
@@ -192,9 +192,9 @@ module.exports={
     // 插件配置项
     plugins: [
         new HtmlWebpackPlugin({
-            filename: 'index.html',//输出文件的名称
-            template: path.resolve(__dirname, 'src/index.html'),//模板文件的路径
-            title:'webpack4.x',//配置生成页面的标题
+            filename: 'index.html',// 输出文件的名称
+            template: path.resolve(__dirname, 'src/index.html'),// 模板文件的路径
+            title:'webpack4.x',// 配置生成页面的标题
             minify:{
                 removeRedundantAttributes:true, // 删除多余的属性
                 collapseWhitespace:true, // 折叠空白区域
