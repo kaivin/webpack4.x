@@ -21,8 +21,8 @@
   "license": "ISC",
   "dependencies": {
     "jquery": "2.x",
-    "vue": "^2.5.16",
-    "vue-router": "^3.0.1"
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
