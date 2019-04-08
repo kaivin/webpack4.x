@@ -8,6 +8,9 @@
 **这里只是单独的 webpack 配置，后续会出配合 `koa` `react` `vue` 的配置**
 
 ## 更新
+#### 2019.04.08
+* 修正`postcss.config.js`配置，以及`webpack`配置文件中`postcss-loader`的相关配置
+* 第19章关于引入`core-js`做了补充及修正
 #### 2019.04.03
 * `webpack`的代码打包拆分功能做进一步详细讲解记录
 * 新增`wepack`引入`eslint`的配置步骤
@@ -71,6 +74,7 @@
 23. [细说webpack4引入第三方库][23] 
 24. [细说webpack4打包及拆分代码][24] 
 25. [webpack引入eslint][25] 
+26. [postcss-loader遇到的坑][26] 
 
 ## 命令
 
@@ -124,3 +128,4 @@ yarn build
 [23]:https://github.com/kaivin/webpack4.x/blob/master/README/23：细说webpack4引入第三方库.md "细说webpack4引入第三方库" 
 [24]:https://github.com/kaivin/webpack4.x/blob/master/README/24：细说webpack4打包及拆分代码.md "细说webpack4打包及拆分代码" 
 [25]:https://github.com/kaivin/webpack4.x/blob/master/README/25：webpack引入eslint.md "webpack引入eslint" 
+[26]:https://github.com/kaivin/webpack4.x/blob/master/README/26：postcss-loader遇到的坑.md "postcss-loader遇到的坑" 

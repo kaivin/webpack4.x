@@ -6,6 +6,7 @@ const ip = require('ip').address();
 const webpack = require("webpack");
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const notifier = require('node-notifier');
+const postcss = require('./postcss.config');
 
 // 版本号
 const appVersion = new Date().getTime()
@@ -68,11 +69,9 @@ module.exports={
                     { loader: 'style-loader' },
                     { loader: 'css-loader' },
                     { loader: 'postcss-loader',
-                      options: {
-                        sourceMap: true,
-                        config: {
-                            path: 'postcss.config.js'
-                        }
+                        options: {
+                            plugins:postcss.plugins,
+                            sourceMap: true,
                         }
                     }
                 ]
@@ -89,10 +88,9 @@ module.exports={
                     {
                         loader: 'postcss-loader',
                         options: {
+                            plugins:postcss.plugins,
+                            parser: 'postcss-scss',
                             sourceMap: true,
-                            config: {
-                                path: 'postcss.config.js'
-                            }
                         }
                     },
                     {
@@ -101,7 +99,8 @@ module.exports={
                     }
                 ],
                 exclude: /node_modules/
-            },{// 编译less
+            },
+            {// 编译less
                 test: /\.less$/,
                 use: [
                     {
@@ -116,10 +115,9 @@ module.exports={
                     {
                         loader: 'postcss-loader',
                         options: {
+                            plugins:postcss.plugins,
+                            parser: 'postcss-less',
                             sourceMap: true,
-                            config: {
-                                path: 'postcss.config.js'
-                            }
                         }
                     },
                     {

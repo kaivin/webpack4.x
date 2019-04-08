@@ -7,6 +7,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩 JS
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // 压缩 css
 const copyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const postcss = require('./postcss.config');
 
 // 版本号
 const appVersion = new Date().getTime()
@@ -50,11 +51,8 @@ module.exports={
                     MiniCssExtractPlugin.loader,
                     { loader: 'css-loader' },
                     { loader: 'postcss-loader',
-                      options: {
-                        publicPath:"",
-                        config: {
-                            path: 'postcss.config.js'
-                        }
+                        options: {
+                            plugins:postcss.plugins,
                         }
                     }
                 ]
@@ -69,9 +67,8 @@ module.exports={
                     {
                         loader: 'postcss-loader',
                         options: {
-                            config: {
-                                path: 'postcss.config.js'
-                            }
+                            plugins:postcss.plugins,
+                            parser: 'postcss-scss',
                         }
                     },
                     {
@@ -95,10 +92,8 @@ module.exports={
                     {
                         loader: 'postcss-loader',
                         options: {
-                            sourceMap: true,
-                            config: {
-                                path: 'postcss.config.js'
-                            }
+                            plugins:postcss.plugins,
+                            parser: 'postcss-less',
                         }
                     },
                     {

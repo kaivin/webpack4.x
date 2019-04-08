@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 分离 css �
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清除生成文件
 const copyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const postcss = require('./postcss.config');
 
 // 版本号
 const appVersion = new Date().getTime()
@@ -51,11 +52,9 @@ module.exports={
                     MiniCssExtractPlugin.loader,
                     { loader: 'css-loader' },
                     { loader: 'postcss-loader',
-                      options: {
-                        sourceMap: true,
-                        config: {
-                            path: 'postcss.config.js'
-                        }
+                        options: {
+                            plugins:postcss.plugins,
+                            sourceMap: true,
                         }
                     }
                 ]
@@ -70,10 +69,9 @@ module.exports={
                     {
                         loader: 'postcss-loader',
                         options: {
+                            plugins:postcss.plugins,
+                            parser: 'postcss-scss',
                             sourceMap: true,
-                            config: {
-                                path: 'postcss.config.js'
-                            }
                         }
                     },
                     {
@@ -95,10 +93,9 @@ module.exports={
                     {
                         loader: 'postcss-loader',
                         options: {
+                            plugins:postcss.plugins,
+                            parser: 'postcss-less',
                             sourceMap: true,
-                            config: {
-                                path: 'postcss.config.js'
-                            }
                         }
                     },
                     {

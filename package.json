@@ -20,6 +20,7 @@
   "author": "kevin",
   "license": "ISC",
   "dependencies": {
+    "core-js": "2",
     "jquery": "2.x",
     "vue": "^2.6.10",
     "vue-router": "^3.0.2"
@@ -35,7 +36,6 @@
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^5.0.1",
-    "core-js": "^2.6.5",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
@@ -61,6 +61,7 @@
     "opn": "^5.4.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-aspect-ratio-mini": "^1.0.1",
+    "postcss-less": "^3.1.4",
     "postcss-loader": "^3.0.0",
     "postcss-px-to-viewport": "^1.1.0",
     "postcss-scss": "^2.0.0",
