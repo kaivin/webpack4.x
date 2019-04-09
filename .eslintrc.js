@@ -1,17 +1,37 @@
 module.exports = {
     root: true, // 作用的目录是根目录
-    extends: 'standard', // 继承标准规则
+    extends: [
+      'standard',
+      "plugin:flowtype/recommended",
+      "eslint:recommended", 
+      "plugin:vue/essential"
+    ], // 继承标准规则
     plugins: [
-        'html' // 使用eslint-plugin-html
+        'html', // 使用eslint-plugin-html
+        'vue',
+        'react',
+        'flowtype'
     ],
-    parser: "babel-eslint",
+    "settings": {
+      "flowtype": {
+          "onlyFilesWithFlowAnnotation": true,// 只检查 声明 flow语法的文件
+      }
+    },
     parserOptions: {
-        sourceType: 'module' // 按照模块的方式解析
+        // 此项是用来指定eslint解析器的，解析器必须符合规则，babel-eslint解析器是对babel解析器的包装使其与ESLint解析
+        parser: "babel-eslint",
+        sourceType: 'module', // 按照模块的方式解析
+        // "ecmaVersion": 6,
+        "ecmaFeatures": {
+          "jsx": true
+        }
     },
     env: {
       browser: true, // 开发环境配置表示可以使用浏览器的方法
       node: true, //
-      es6: true
+      commonjs: true,
+      es6: true,
+      amd: true
     },
     rules: { // 重新覆盖 extends: 'standard'的规则
       // 自定义的规则

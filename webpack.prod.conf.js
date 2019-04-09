@@ -41,6 +41,12 @@ module.exports={
                 }]
             },
             {
+                test: /\.json$/,  //用于匹配loaders所处理文件拓展名的正则表达式
+                use: 'json-loader', //具体loader的名称
+                type: 'javascript/auto',
+                exclude: /node_modules/
+            },
+            {
                 test: /\.(js|jsx)$/,
                 use: ['babel-loader?cacheDirectory=true'],
                 include: [path.resolve(__dirname, 'src'), path.resolve('node_modules/webpack-dev-server/client')]

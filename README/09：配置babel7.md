@@ -1,6 +1,9 @@
 
 ## 安装 babel 相关插件
 
+#### 2019.04.09
+此页面有部分扩充内容<a href="#a1">点击查看</a>   
+
 ```
 npm install babel-loader @babel/core @babel/preset-env @babel/runtime @babel/plugin-transform-runtime -D
 ```
@@ -43,6 +46,37 @@ module: {
 
 至此，`babel` 相关配置，告一段落
 
+#### <a name="a1">babel个性化配置</a> 
+新版中 `@babel/runtime` 只包含了一些 `helpers`，如果需要 `core-js` `polyfill` 浏览器不支持的 `API`，可以用 `transform` 提供的选项 `{"corejs": 2}` 并安装依赖 `@babel/runtime-corejs2`。
+
+由于本项目配置了`"useBuiltIns": "usage"`，并且本项目的`superSlide`又依赖`core-js`，所以这里需要做一些特定的配置，并需要下载`@babel/runtime-corejs2`插件。
+
+```
+yarn add @babel/runtime-corejs2 -D
+```
+修改`.babelrc`文件：
+```
+{
+  // targets, useBuiltIns 等选项用于编译出兼容目标环境的代码
+  // 其中 useBuiltIns 如果设为 "usage"
+  // Babel 会根据实际代码中使用的 ES6/ES7 代码，以及与你指定的 targets，按需引入对应的 polyfill
+  // 而无需在代码中直接引入 import '@babel/polyfill'，避免输出的包过大，同时又可以放心使用各种新语法特性。
+    "presets": [
+      ["@babel/preset-env", {
+        "modules": false,
+        "targets": {
+          "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+        },
+        "useBuiltIns": "usage"
+      }]
+    ],
+    "plugins": [
+      ["@babel/plugin-transform-runtime",{
+        "corejs": 2
+      }]
+    ]
+}
+```
 
 
 ## 相关文件配置信息更新情况

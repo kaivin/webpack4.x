@@ -8,6 +8,10 @@
 **这里只是单独的 webpack 配置，后续会出配合 `koa` `react` `vue` 的配置**
 
 ## 更新
+#### 2019.04.09
+* 完善`eslint`配置，增加`vue,react,flowtype`配置，第25章有更新
+* 补充关于引入支持`core-js`的方法，主要为添加`@babel/runtime-corejs2`配置，第9章有更新
+* 新增`json-loader`配置
 #### 2019.04.08
 * 修正`postcss.config.js`配置，以及`webpack`配置文件中`postcss-loader`的相关配置
 * 第19章关于引入`core-js`做了补充及修正
@@ -75,6 +79,7 @@
 24. [细说webpack4打包及拆分代码][24] 
 25. [webpack引入eslint][25] 
 26. [postcss-loader遇到的坑][26] 
+27. [项目配置查漏补缺][27] 
 
 ## 命令
 
@@ -129,3 +134,4 @@ yarn build
 [24]:https://github.com/kaivin/webpack4.x/blob/master/README/24：细说webpack4打包及拆分代码.md "细说webpack4打包及拆分代码" 
 [25]:https://github.com/kaivin/webpack4.x/blob/master/README/25：webpack引入eslint.md "webpack引入eslint" 
 [26]:https://github.com/kaivin/webpack4.x/blob/master/README/26：postcss-loader遇到的坑.md "postcss-loader遇到的坑" 
+[27]:https://github.com/kaivin/webpack4.x/blob/master/README/27：项目配置查漏补缺.md "项目配置查漏补缺" 

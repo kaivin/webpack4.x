@@ -42,6 +42,12 @@ module.exports={
                 }]
             },
             {
+                test: /\.json$/,  //用于匹配loaders所处理文件拓展名的正则表达式
+                use: 'json-loader', //具体loader的名称
+                type: 'javascript/auto',
+                exclude: /node_modules/
+            },
+            {
                 test: /\.js$/,
                 use:[{loader:'eslint-loader',
                     options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
