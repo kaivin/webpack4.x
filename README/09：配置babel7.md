@@ -2,7 +2,7 @@
 ## 安装 babel 相关插件
 
 #### 2019.04.09
-此页面有部分扩充内容<a href="#a1">点击查看</a>   
+此页面有部分扩充内容<a href="#babel个性化配置">点击查看</a>   
 
 ```
 npm install babel-loader @babel/core @babel/preset-env @babel/runtime @babel/plugin-transform-runtime -D
@@ -46,7 +46,7 @@ module: {
 
 至此，`babel` 相关配置，告一段落
 
-#### <a name="a1">babel个性化配置</a> 
+#### <a name="babel个性化配置">babel个性化配置</a> 
 新版中 `@babel/runtime` 只包含了一些 `helpers`，如果需要 `core-js` `polyfill` 浏览器不支持的 `API`，可以用 `transform` 提供的选项 `{"corejs": 2}` 并安装依赖 `@babel/runtime-corejs2`。
 
 由于本项目配置了`"useBuiltIns": "usage"`，并且本项目的`superSlide`又依赖`core-js`，所以这里需要做一些特定的配置，并需要下载`@babel/runtime-corejs2`插件。

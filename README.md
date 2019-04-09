@@ -61,7 +61,7 @@
 6. [配置样式-css、postcss、scss、less][6] 
 7. [配置图片、文件、图标文字][7] 
 8. [初步优化开发环境][8] 
-9. [配置babel][9]  
+9. [配置babe7l][9]  
 10. [配置生产环境webpack][10] 
 11. [分离css][11] 
 12. [CleanWebpackPlugin][12] 
@@ -116,7 +116,7 @@ yarn build
 [6]:https://github.com/kaivin/webpack4.x/blob/master/README/06：配置样式-css、postcss、scss、less.md "配置样式-css、postcss、scss、less" 
 [7]:https://github.com/kaivin/webpack4.x/blob/master/README/07：配置图片、文件、图标文字.md "配置图片、文件、图标文字" 
 [8]:https://github.com/kaivin/webpack4.x/blob/master/README/08：初步优化开发环境.md "初步优化开发环境" 
-[9]:https://github.com/kaivin/webpack4.x/blob/master/README/09：配置babel.md "配置babel" 
+[9]:https://github.com/kaivin/webpack4.x/blob/master/README/09：配置babel7.md "配置babel7" 
 [10]:https://github.com/kaivin/webpack4.x/blob/master/README/10：配置生产环境webpack.md "配置生产环境webpack" 
 [11]:https://github.com/kaivin/webpack4.x/blob/master/README/11：分离css.md "分离css" 
 [12]:https://github.com/kaivin/webpack4.x/blob/master/README/12：CleanWebpackPlugin.md "CleanWebpackPlugin" 
