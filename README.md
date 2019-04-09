@@ -11,7 +11,7 @@
 #### 2019.04.09
 * 完善`eslint`配置，增加`vue,react,flowtype`配置，第25章有更新
 * 补充关于引入支持`core-js`的方法，主要为添加`@babel/runtime-corejs2`配置，第9章有更新
-* 新增`json-loader`配置
+* 新增`json-loader`配置，新增`bable`的三个插件`@babel/plugin-transform-object-assign @babel/plugin-proposal-class-properties @babel/plugin-proposal-decorators`
 #### 2019.04.08
 * 修正`postcss.config.js`配置，以及`webpack`配置文件中`postcss-loader`的相关配置
 * 第19章关于引入`core-js`做了补充及修正
