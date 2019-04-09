@@ -78,6 +78,21 @@ yarn add @babel/runtime-corejs2 -D
 }
 ```
 
+这里需要说明的是：
+1. 项目用到了`@babel/runtime-corejs2`该插件，那么就必须下载`core-js`插件，而且是项目依赖，这两个插件在终端下载完后，如果直接运行`yarn start`，那么会出现如下警告：
+
+```
+WARNING: We noticed you're using the `useBuiltIns` option without declaring a core-js version. Currently, we assume version 2.x when no version is passed. Since this default version will likely change in future versions of Babel, we recommend explicitly setting the core-js version you are using via the `corejs` option.
+
+You should also be sure that the version you pass to the `corejs` option matches the version specified in your `package.json`'s `dependencies` section. If it
+doesn't, you need to run one of the following commands:
+
+  npm install --save core-js@2    npm install --save core-js@3
+  yarn add core-js@2              yarn add core-js@3
+```
+此时重启终端命令行，再次运行`yarn start` 就不会出现这个警告了
+
+
 
 ## 相关文件配置信息更新情况
 
