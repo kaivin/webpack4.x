@@ -92,6 +92,14 @@ doesn't, you need to run one of the following commands:
 ```
 此时重启终端命令行，再次运行`yarn start` 就不会出现这个警告了
 
+2. 如果在运行开发环境过程中出现如下错误：
+
+```
+Can't resolve 'core-js/library/fn/object/assign
+```
+只要是这种找不到`core-js/library`，都说明你下载的是`3.x`版本的`core-js`，在`3.x`版本，已经没有`library`文件，这里报错的原因可能是`babel`和`core-js`的版本对应没有及时更新，所以，我们只能暂时做降级处理，删除`3.x`版本的`core-js`，并重新下载`2.x`版本，再次运行`yarn start` 就不会再出现这种问题了
+
+
 
 
 ## 相关文件配置信息更新情况
