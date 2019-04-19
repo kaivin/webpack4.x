@@ -13,10 +13,18 @@ $primary:               #f5f5f5 !default;//主色
         font-size:60px;
     }
 }
-
+.fix{
+    position: fixed;
+    right:0;
+    bottom:10px;
+    width:200px;
+    height:40px;
+    z-index: 100;
+    background: #f5f5f5;
+}
 
 *{margin:0; padding:0; list-style:none; }
-body{ background:#fff; font:normal 12px/22px 宋体;  }
+body{ background:#fff; font:normal 12px/22px 宋体; overflow-x: hidden; }
 img{ border:0;  }
 a{ text-decoration:none; color:#333;  }
 a:hover{ color:#1974A1;  }
