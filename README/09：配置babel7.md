@@ -90,214 +90,55 @@ doesn't, you need to run one of the following commands:
   npm install --save core-js@2    npm install --save core-js@3
   yarn add core-js@2              yarn add core-js@3
 ```
-此时重启终端命令行，再次运行`yarn start` 就不会出现这个警告了
+~~此时重启终端命令行，再次运行`yarn start` 就不会出现这个警告了~~
+出现上述警告是因为`.babelrc`中缺少配置，这里不仅需要在`@babel/plugin-transform-runtime`中声明`core-js`的版本，也需要在`@babel/preset-env`声明使用`core-js`:
+
+```
+{
+  // targets, useBuiltIns 等选项用于编译出兼容目标环境的代码
+  // 其中 useBuiltIns 如果设为 "usage"
+  // Babel 会根据实际代码中使用的 ES6/ES7 代码，以及与你指定的 targets，按需引入对应的 polyfill
+  // 而无需在代码中直接引入 import '@babel/polyfill'，避免输出的包过大，同时又可以放心使用各种新语法特性。
+    "presets": [
+      ["@babel/preset-env", {
+        "modules": false,
+        "targets": {
+          "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+        },
+        "useBuiltIns": "usage",
+        "corejs": 2
+      }]
+    ],
+    "plugins": [
+      ["@babel/plugin-transform-runtime",{
+        "corejs": 2
+      }]
+    ]
+}
+```
+此时再次运行`yarn start`会发现终端就不会再出现上面那种警告了
 
 2. 如果在运行开发环境过程中出现如下错误：
 
 ```
 Can't resolve 'core-js/library/fn/object/assign
 ```
-只要是这种找不到`core-js/library`，都说明你下载的是`3.x`版本的`core-js`，在`3.x`版本，已经没有`library`文件，这里报错的原因可能是`babel`和`core-js`的版本对应没有及时更新，所以，我们只能暂时做降级处理，删除`3.x`版本的`core-js`，并重新下载`2.x`版本，再次运行`yarn start` 就不会再出现这种问题了
+只要是这种找不到`core-js/library`，都说明你下载的是`3.x`版本的`core-js`，在`3.x`版本，已经没有`library`文件，原来的`library`文件夹下的文件，可以在`core-js@3`版本的`es`文件夹下找到，这里报错的原因是`babel`的插件和`core-js`的版本对应没有及时更新，所以，我们只能暂时做降级处理，删除`3.x`版本的`core-js`，并重新下载`core-js@2.6.5`版本，再次运行`yarn start` 就不会再出现这种问题了
 
-
-
-
-## 相关文件配置信息更新情况
-
-#### 以下为本文已涉及到的配置文件的当前详细信息
-
-
-1. `webpack.dev.conf.js` 文件现在的配置信息情况：
-
+当我们在`.babelrc`文件中做了`corejs`相关配置后，我们上面所下载的那些`babel`相关插件中就会有关于`core-js`的代码会起作用了，目前这些插件的版本中所使用过的`corejs`版本还都是`2.x`版本，所以配置`corejs`时，下载插件如下：
 ```
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const open = require('opn');//打开浏览器
-const chalk = require('chalk');// 改变命令行中输出日志颜色插件
-const ip = require('ip').address();
-
-module.exports = {
-    // 入口文件配置项
-    entry:{
-        app:[path.resolve(__dirname, 'src/index.js')],
-    },
-    // 输出文件配置项
-    output:{
-        path:path.resolve(__dirname,"dist"),
-        filename: 'js/[name].[hash].js',
-        chunkFilename: 'js/[name].[chunkhash].js',
-        publicPath:""
-    },
-    // 开发工具
-    devtool: 'eval-source-map',
-    // webpack4.x 环境配置项
-    mode:"development",
-    // 加载器 loader 配置项
-    module:{
-        rules:[
-            {
-                test: /\.(js|jsx)$/,
-                use: ['babel-loader?cacheDirectory=true'],
-                include: path.resolve(__dirname, 'src')
-            },
-            {
-                test: /\.css$/,
-                use: [{
-                        loader: 'style-loader'
-                    },{
-                        loader: 'css-loader'
-                    },{
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                            config: {
-                                path: 'postcss.config.js'
-                            }
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    {
-                        loader: 'style-loader', 
-                    },
-                    {
-                        loader: 'css-loader', 
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                            config: {
-                                path: 'postcss.config.js'
-                            }
-                        }
-                    },
-                    {
-                        loader: 'sass-loader', 
-                        options: { sourceMap: true }
-                    }
-                ],
-                exclude: /node_modules/
-            },
-            {
-                test: /\.less$/,
-                use: [
-                    {
-                        loader: 'style-loader', 
-                    },
-                    {
-                        loader: 'css-loader', 
-                        options: {
-                            importLoaders: 1,
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                            config: {
-                                path: 'postcss.config.js'
-                            }
-                        }
-                    },
-                    {
-                        loader: 'less-loader', 
-                        options: { 
-                            sourceMap: true,
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.(png|jp?g|gif|svg)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 8192,        // 小于8192字节的图片打包成base 64图片
-                            name:'images/[name].[hash:8].[ext]',
-                            publicPath:''
-                        }
-                    }
-                ]
-            },
-            {
-                // 文件依赖配置项——字体图标
-                test: /\.(woff|woff2|svg|eot|ttf)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        limit: 8192, 
-                        name: 'fonts/[name].[ext]?[hash:8]',
-                        publicPath:''
-                    },
-                }],
-            }, {
-                // 文件依赖配置项——音频
-                test: /\.(wav|mp3|ogg)?$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        limit: 8192, 
-                        name: 'audios/[name].[ext]?[hash:8]',
-                        publicPath:''
-                    },
-                }],
-            }, {
-                // 文件依赖配置项——视频
-                test: /\.(ogg|mpeg4|webm)?$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        limit: 8192, 
-                        name: 'videos/[name].[ext]?[hash:8]',
-                        publicPath:''
-                    },
-                }],
-            }, {
-                test:/\.html$/,
-                use:[
-                    {
-                        loader:"html-loader",
-                        options:{
-                            attrs:["img:src","img:data-src"] 
-                        }
-                    }
-                ]
-            }
-        ]
-    },
-    // 插件配置项
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',//输出文件的名称
-            template: path.resolve(__dirname, 'src/index.html'),//模板文件的路径
-            title:'webpack-主页',//配置生成页面的标题
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ],
-    // 开发服务配置项
-    devServer: {
-        port: 8080,
-        contentBase: path.resolve(__dirname, 'dist'),
-        historyApiFallback: true,
-        host: ip,
-        overlay:true,
-        hot:true,
-        inline:true,
-        after(){
-            open(`http://${ip}:${this.port}`)
-            .then(() => {
-                console.log(chalk.cyan(`http://${ip}:${this.port} 已成功打开`));
-            })
-            .catch(err => {
-                console.log(chalk.red(err));
-            });
-        }
-    }
-}
+yarn add core-js@2.6.5
+yarn add @babel/runtime-corejs2 -D
 ```
+
+
+如果后期这些`babel`插件对依赖的`core-js`版本升级到`3.x`，那么上面两个插件就可以更新了：
+```
+yarn add core-js
+yarn add @babel/runtime-corejs3 -D
+```
+`@babel/runtime-corejs2` 和 `@babel/runtime-corejs3` 是两个插件，不难看出，一个是`corejs`的`2.x`版本，一个是`3.x`版本，升级到`3.x`版本，就需要把`.babelrc`文件中对`corejs`配置的`2`改为`3`，这样`corejs`这一块的配置就不会再出问题了~
+
+
+**项目中已经安装的`babel`相关的插件也都需要升级到`7.4.4`版本，否则也还是会报错**
+

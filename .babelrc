@@ -9,7 +9,8 @@
         "targets": {
           "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
         },
-        "useBuiltIns": "usage"
+        "useBuiltIns": "usage",
+        "corejs": 2
       }]
     ],
     "plugins": [
@@ -18,6 +19,7 @@
       }],
       "@babel/plugin-transform-object-assign",
       ["@babel/plugin-proposal-decorators", { "legacy": true }],
-      "@babel/plugin-proposal-class-properties"
+      "@babel/plugin-proposal-class-properties",
+      "dynamic-import-webpack",
     ]
 }
