@@ -102,6 +102,15 @@ module.exports={
                     {
                         loader: 'sass-loader', 
                         options: { sourceMap: true }
+                    },
+                    { loader: 'sass-resources-loader',
+                        options: {
+                            sourceMap: true,
+                            resources: [
+                                path.resolve(__dirname, 'src/assets/styles/core/_settings.scss'),
+                                path.resolve(__dirname, 'src/assets/styles/core/_mixin.scss'),
+                            ]
+                        }
                     }
                 ],
                 exclude: /node_modules/

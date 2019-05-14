@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+// font相关
+//-----------------------------------------------------	
+$baseFontSize:          14px !default;
+$baseLineHeight:        1.5 !default;
+$baseFontFamily:        Arial,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB",sans-serif !default;
+$fontCn:                "SimSun"; //宋体
+$fontHeiTi:             "SimHei"; //黑体
+$fontEn:                "Arial"; //英文
+
+
+// 基本颜色
+// color function : http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html
+// lighten($color, $amount)
+// darken($color, $amount)
+// opacify($color, $amount)
+// mix($color1, $color2[, $amount])
+//-----------------------------------------------------	
+$black:                 #000 !default;
+$grayDarkest:           #333 !default;
+$grayDarker:            #666 !default;
+$grayDark:              #999 !default;
+$gray:                  #ccc !default;
+$grayLighter:           #ddd !default;
+$grayLight:             #f8f8f8 !default;
+$white:                 #fff !default;
+
+$red:                   #ff0000 !default;
+$blue:                  #007bff !default;
+$blueDark:              #0064cd !default;
+$orange:                #ff822e !default;
+$green:                 #8bab34 !default;
+$yellow:                #ffc40d !default;
+$pink:                  #eba0a5 !default;
+$purple:                #7a43b6 !default;
+
+$primary:               #007bff !default;//主色1c8be4
+$auxiliary:             #5492df !default;//辅色
+$recoil:                #f79ed4 !default;//反冲色
+$ornament:              #ae0001 !default;//点缀色
+
+
+// link
+//-----------------------------------------------------	
+// 如果只有一个值则滑过的值为这个值的darken 5%，如果
+// 有两个值则第二个值为滑过的值
+$linkColor:             $grayDarkest $grayDarkest !default;
+
+
+// scaffolding
+//-----------------------------------------------------	
+$bodyBgColor:           $white !default;
+$textColor:             $grayDarkest !default;
+
+
+// placeholder
+//-----------------------------------------------------	
+// 变量分别为：是否输出表单的占位符placeholder样式，文本色
+$placeholder:           true $gray !default;
+
+
+// z-index
+//-----------------------------------------------------	
+$zindexDropdown:        1000 !default;
+$zindexFixedTopbar:     1010 !default;
+$zindexTooltip:         1020 !default;
+$zindexAlert:           1030 !default;
+$zindexModal:           1100 !default;
+
+/// color|1|BrandColor|0
+$--color-primary: #1890ff !default;
+/// color|1|BackgroundColor|4
+$--color-white: #FFFFFF !default;
+/// color|1|BackgroundColor|4
+$--color-black: #000000 !default;
+// 为颜色添加白色，以百分比形式
+$--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default;
+$--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default;
+$--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default;
+$--color-primary-light-4: mix($--color-white, $--color-primary, 40%) !default;
+$--color-primary-light-5: mix($--color-white, $--color-primary, 50%) !default;
+$--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default;
+$--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default;
+$--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default;
+$--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default;
+
+// 为颜色添加黑色，以百分比形式
+$--color-primary-dark-1: mix($--color-black, $--color-primary, 10%) !default;
+$--color-primary-dark-2: mix($--color-black, $--color-primary, 20%) !default;
+$--color-primary-dark-3: mix($--color-black, $--color-primary, 30%) !default;
+$--color-primary-dark-4: mix($--color-black, $--color-primary, 40%) !default;
+$--color-primary-dark-5: mix($--color-black, $--color-primary, 50%) !default;
+$--color-primary-dark-6: mix($--color-black, $--color-primary, 60%) !default;
+$--color-primary-dark-7: mix($--color-black, $--color-primary, 70%) !default;
+$--color-primary-dark-8: mix($--color-black, $--color-primary, 80%) !default;
+$--color-primary-dark-9: mix($--color-black, $--color-primary, 90%) !default; 

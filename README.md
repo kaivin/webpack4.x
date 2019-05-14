@@ -8,6 +8,9 @@
 **这里只是单独的 webpack 配置，后续会出配合 `koa` `react` `vue` 的配置**
 
 ## 更新
+#### 2019.05.14
+* 第27章新增`sass-resources-loader`配置，用来在其他页面内的`scss`样式中调用全局设置的`scss`变量
+* 新增`scss`的常用变量设置以及`mixin`、页面样式初始化`scss`文件
 #### 2019.05.07
 * emmmm，`core-js`的问题再次做出修正，这回是真的没问题了~,第9章有具体介绍~
 * 第27章新增`babel-plugin-dynamic-import-webpack`用来解决`vue-router`中动态导入组件失败的问题

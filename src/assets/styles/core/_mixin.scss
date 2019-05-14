@@ -1,0 +1,139 @@
+@charset "UTF-8";
+//-----------------------------------------------------  
+// mixin scss
+// 包括常用的mixin，%及@function
+// mixin，通过@include调用，样式通过拷贝的方式使用，尤其适用于传递参数
+// %，通过@extend调用，样式通过组合申明的方式使用，适用于不传参数的代码片段  
+// @function，返回一个值，用于调用
+//-----------------------------------------------------
+
+/**
+ * ::-webkit-scrollbar 滚动条整体部分
+ * ::-webkit-scrollbar-thumb  滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
+ * ::-webkit-scrollbar-track  滚动条的轨道（里面装有Thumb）
+ * ::-webkit-scrollbar-button 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置。
+ * ::-webkit-scrollbar-track-piece 内层轨道，滚动条中间部分（除去）
+ * ::-webkit-scrollbar-corner 边角，即两个滚动条的交汇处
+ * ::-webkit-resizer 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件
+ */
+// // 滚动条样式
+@mixin scrollBar {
+  &::-webkit-scrollbar-track-piece {
+    background: #d3dce6;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #99a9bf;
+    border-radius: 20px;
+  }
+}
+
+// Center-align a block level element
+// block得有宽度margin左右为auto才能居中
+@mixin center-block {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  %center-block{
+    @include center-block;
+  }
+  
+  // float left & right
+  @mixin fl($float:left) {
+    float: $float;
+  }
+  %fl{
+    @include fl;
+  }
+  
+  // float left & right
+  @mixin fr($float:right) {
+    float: $float;
+  }
+  %fr{
+    @include fr;
+  }
+  // clearfix
+  // 闭合子元素的浮动
+  @mixin clearfix {
+    &:before,
+    &:after {
+      content: "";
+      display: table;
+    }
+    &:after {
+      clear: both;
+    }
+  }
+  %clearfix{
+    @include clearfix;
+  }
+  //绝对居中
+  @mixin center($width: null, $height: null) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    overflow: hidden;
+  
+    @if not $width and not $height {
+      transform: translate(-50%, -50%);
+    } @else if $width and $height {
+      width: $width;
+      height: $height;
+      margin: -($height / 2) #{0 0} -($width / 2);
+    } @else if not $height {
+      width: $width;
+      margin-left: -($width / 2);
+      transform: translateY(-50%);
+    } @else {
+      height: $height;
+      margin-top: -($height / 2);
+      transform: translateX(-50%);
+    }
+  }
+
+// Text overflow
+// 元素可以设置宽度才可应用省略号
+%ellipsis-basic{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+  }
+  @mixin ellipsis($width:100%) {
+    @extend %ellipsis-basic;
+    width:$width;
+  }
+
+// 三角符号
+%triangle-basic{
+    content:"";
+    height: 0;
+    width: 0;
+    overflow:hidden;
+  }
+  @mixin triangle($direction, $size, $borderColor ) {
+    @extend %triangle-basic;
+    @if $direction == top {
+      border-bottom:$size solid $borderColor;
+      border-left:$size dashed transparent;
+      border-right:$size dashed transparent;
+    } 
+    @else if $direction == right {
+      border-left:$size solid $borderColor;
+      border-top:$size dashed transparent;
+      border-bottom:$size dashed transparent;
+    } 
+    @else if $direction == bottom {
+      border-top:$size solid $borderColor;
+      border-left:$size dashed transparent;
+      border-right:$size dashed transparent;
+    } 
+    @else if $direction == left {
+      border-right:$size solid $borderColor;
+      border-top:$size dashed transparent;
+      border-bottom:$size dashed transparent;
+    }
+  }    
