@@ -97,7 +97,7 @@ module.exports = {
 };
 ```
 
-这里用到了 `path` 是 `webpack` 自带的模块， `path.resolve()` 和 `path.join()` 作用没有太大的区别，这里是作合并路径用的
+这里用到了 `path` 是 `node` 的模块， `path.resolve()` 和 `path.join()` 作用没有太大的区别，这里是作合并路径用的
 
 可以在 `webpack.dev.config.js` 文件尾加入如下代码：
 
