@@ -21,7 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "core-js": "2.6.5",
-    "jquery": "2.x",
+    "jquery": "3.x",
     "vue": "^2.6.10",
     "vue-router": "^3.0.2"
   },
